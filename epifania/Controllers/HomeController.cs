@@ -1,10 +1,13 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using epifania.Models;
-using epifaniaData.Logic;
+using Epifania.Models;
 
-namespace epifania.Controllers
+namespace Epifania.Controllers
 {
     public class HomeController : Controller
     {
@@ -30,25 +33,5 @@ namespace epifania.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
-
-        public IActionResult User()
-        {
-            return View();
-        } 
-        
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public IActionResult User(UserModel userModel)
-        {
-            if (ModelState.IsValid)
-            {
-             int re=   UsersProc.CreateUser(userModel.Username, userModel.Password, userModel.FirstName, userModel.LastName, userModel.Email,
-                    userModel.Telephone, userModel.Address1, userModel.Address2, userModel.NIF);
-                
-                return RedirectToAction("Index");
-            }
-            return View();
-        }
-
     }
 }
