@@ -4,4 +4,15 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\images\" />
+    <Folder Include="Views\BackOffice\" />
+    <Folder Include="Views\FrontOffice\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Update="wwwroot\images\logo.png">
+      <IncludeInPackage>false</IncludeInPackage>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
 </Project>
