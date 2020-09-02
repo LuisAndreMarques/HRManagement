@@ -5,9 +5,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using epifania.Models;
+using Epifania.Models;
 
-namespace epifania.Controllers
+namespace Epifania.Controllers
 {
     public class HomeController : Controller
     {

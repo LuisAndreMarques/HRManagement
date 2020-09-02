@@ -1,6 +1,6 @@
 using System;
 
-namespace epifania.Models
+namespace Epifania.Models
 {
     public class ErrorViewModel
     {
