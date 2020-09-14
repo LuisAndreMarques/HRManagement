@@ -28,7 +28,7 @@ namespace Epifania
             services.AddLocalization(options => options.ResourcesPath = "Epifania.Language");
             services.AddMvc().AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix).AddDataAnnotationsLocalization();
 
-            string connectionString = @"Server=127.0.0.1,1433;Database=EPIFANIADB;Trusted_Connection=False;User=sa;Password=CumCaralho#123;";
+            string connectionString = @"Server=DESKTOP-5VMV317\SQLEXPRESS;Database=EPIFANIADB;Trusted_Connection=True";
             services.AddDbContext<DataBaseContext>(options => options.UseSqlServer(connectionString));
         }
 
