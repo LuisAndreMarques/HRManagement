@@ -4,7 +4,6 @@
 
 <link rel="stylesheet" href="~/css/backoffice.css" />
 
-
 <!--
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
@@ -29,7 +28,7 @@
                         <li><a href="#"><i class="fa fa-bar-chart" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Statistics</span></a></li>
                         <li><a href="#"><i class="fa fa-user" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Calender</span></a></li>
                         <li>
-                            <a asp-area="" asp-controller="Users" asp-action="">
+                            <a href="@Url.Action("Index","Users")">
                                 <i class="fa fa-calendar" aria-hidden="true"></i>
                                 <span class="hidden-xs hidden-sm">Users</span>
                             </a>
@@ -63,7 +62,7 @@
                 </div>
             </div>
             <div class="col-md-10 col-sm-11 display-table-cell v-align">
-                <!--<button type="button" class="slide-toggle">Slide Toggle</button> -->
+                <button type="button" class="slide-toggle">Slide Toggle</button>
                 <div class="row">
                     <header>
                         <div class="col-md-7">
@@ -119,15 +118,11 @@
                 <div class="user-dashboard">
                     @RenderBody();
                     <div class="row">
-                       
                     </div>
                 </div>
             </div>
         </div>
-
     </div>
- 
-
 
     <!-- Modal -->
     <div id="add_project" class="modal fade" role="dialog">
@@ -150,8 +145,6 @@
                     <button type="button" class="add-project" data-dismiss="modal">Save</button>
                 </div>
             </div>
-
         </div>
     </div>
-
 </body>

@@ -19,11 +19,11 @@ namespace Epifania.Core.Models
         #endregion Fields
 
         #region Relations
+
         public int UserRoleId { get; set; }
 
         public UserRole UserRole { get; set; }
-        #endregion
 
-
+        #endregion Relations
     }
 }

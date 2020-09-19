@@ -7,7 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Epifania", "Epifania\Epifan
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Epifania.Core", "Epifania.Core\Epifania.Core.csproj", "{EA515723-8C0B-45CE-87A4-69A86A3A4B35}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Epifania.Language", "Epifania.Language\Epifania.Language.csproj", "{E5CE115C-475D-44BA-90BB-52FBAAADEE46}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Epifania.Language", "Epifania.Language\Epifania.Language.csproj", "{E5CE115C-475D-44BA-90BB-52FBAAADEE46}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Epifania.Common", "Epifania.Common\Epifania.Common.csproj", "{1E323876-EB4A-4773-84FD-62E1CAAE998D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{E5CE115C-475D-44BA-90BB-52FBAAADEE46}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E5CE115C-475D-44BA-90BB-52FBAAADEE46}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E5CE115C-475D-44BA-90BB-52FBAAADEE46}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1E323876-EB4A-4773-84FD-62E1CAAE998D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1E323876-EB4A-4773-84FD-62E1CAAE998D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1E323876-EB4A-4773-84FD-62E1CAAE998D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1E323876-EB4A-4773-84FD-62E1CAAE998D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

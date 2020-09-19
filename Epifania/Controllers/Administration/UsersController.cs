@@ -1,31 +1,30 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Epifania.Core.Models;
+using Epifania.Models;
 
-namespace Epifania.Controllers
+namespace Epifania.Controllers.Administration
 {
-    public class UserPermissionsController : Controller
+    public class UsersController : Controller
     {
         private readonly DataBaseContext _context;
 
-        public UserPermissionsController(DataBaseContext context)
+        public UsersController(DataBaseContext context)
         {
             _context = context;
         }
 
-        // GET: UserPermissions
+        // GET: Users
         public async Task<IActionResult> Index()
         {
-            var dataBaseContext = _context.UserPermissions.Include(u => u.UserRole);
+            var dataBaseContext = _context.Users.Include(u => u.UserRole);
             return View(await dataBaseContext.ToListAsync());
         }
 
-        // GET: UserPermissions/Details/5
+        // GET: Users/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -33,42 +32,42 @@ namespace Epifania.Controllers
                 return NotFound();
             }
 
-            var userPermission = await _context.UserPermissions
+            var user = await _context.Users
                 .Include(u => u.UserRole)
-                .FirstOrDefaultAsync(m => m.UserPermissionId == id);
-            if (userPermission == null)
+                .FirstOrDefaultAsync(m => m.UserId == id);
+            if (user == null)
             {
                 return NotFound();
             }
 
-            return View(userPermission);
+            return View(user);
         }
 
-        // GET: UserPermissions/Create
+        // GET: Users/Create
         public IActionResult Create()
         {
             ViewData["UserRoleId"] = new SelectList(_context.UserRoles, "UserRoleId", "UserRoleId");
             return View();
         }
 
-        // POST: UserPermissions/Create
+        // POST: Users/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("UserPermissionId,Name,Description,UserRoleId")] UserPermission userPermission)
+        public async Task<IActionResult> Create([Bind("UserId,UserName,Password,FirstName,LastName,Email,Telephone,Address,NIF,UserRoleId")] User user)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(userPermission);
+                _context.Add(user);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["UserRoleId"] = new SelectList(_context.UserRoles, "UserRoleId", "UserRoleId", userPermission.UserRoleId);
-            return View(userPermission);
+            ViewData["UserRoleId"] = new SelectList(_context.UserRoles, "UserRoleId", "UserRoleId", user.UserRoleId);
+            return View(user);
         }
 
-        // GET: UserPermissions/Edit/5
+        // GET: Users/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -76,23 +75,23 @@ namespace Epifania.Controllers
                 return NotFound();
             }
 
-            var userPermission = await _context.UserPermissions.FindAsync(id);
-            if (userPermission == null)
+            var user = await _context.Users.FindAsync(id);
+            if (user == null)
             {
                 return NotFound();
             }
-            ViewData["UserRoleId"] = new SelectList(_context.UserRoles, "UserRoleId", "UserRoleId", userPermission.UserRoleId);
-            return View(userPermission);
+            ViewData["UserRoleId"] = new SelectList(_context.UserRoles, "UserRoleId", "UserRoleId", user.UserRoleId);
+            return View(user);
         }
 
-        // POST: UserPermissions/Edit/5
+        // POST: Users/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("UserPermissionId,Name,Description,UserRoleId")] UserPermission userPermission)
+        public async Task<IActionResult> Edit(int id, [Bind("UserId,UserName,Password,FirstName,LastName,Email,Telephone,Address,NIF,UserRoleId")] User user)
         {
-            if (id != userPermission.UserPermissionId)
+            if (id != user.UserId)
             {
                 return NotFound();
             }
@@ -101,12 +100,12 @@ namespace Epifania.Controllers
             {
                 try
                 {
-                    _context.Update(userPermission);
+                    _context.Update(user);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!UserPermissionExists(userPermission.UserPermissionId))
+                    if (!UserExists(user.UserId))
                     {
                         return NotFound();
                     }
@@ -117,11 +116,11 @@ namespace Epifania.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["UserRoleId"] = new SelectList(_context.UserRoles, "UserRoleId", "UserRoleId", userPermission.UserRoleId);
-            return View(userPermission);
+            ViewData["UserRoleId"] = new SelectList(_context.UserRoles, "UserRoleId", "UserRoleId", user.UserRoleId);
+            return View(user);
         }
 
-        // GET: UserPermissions/Delete/5
+        // GET: Users/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -129,31 +128,31 @@ namespace Epifania.Controllers
                 return NotFound();
             }
 
-            var userPermission = await _context.UserPermissions
+            var user = await _context.Users
                 .Include(u => u.UserRole)
-                .FirstOrDefaultAsync(m => m.UserPermissionId == id);
-            if (userPermission == null)
+                .FirstOrDefaultAsync(m => m.UserId == id);
+            if (user == null)
             {
                 return NotFound();
             }
 
-            return View(userPermission);
+            return View(user);
         }
 
-        // POST: UserPermissions/Delete/5
+        // POST: Users/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var userPermission = await _context.UserPermissions.FindAsync(id);
-            _context.UserPermissions.Remove(userPermission);
+            var user = await _context.Users.FindAsync(id);
+            _context.Users.Remove(user);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool UserPermissionExists(int id)
+        private bool UserExists(int id)
         {
-            return _context.UserPermissions.Any(e => e.UserPermissionId == id);
+            return _context.Users.Any(e => e.UserId == id);
         }
     }
 }

@@ -1,5 +1,3 @@
-using System;
-
 namespace Epifania.Models
 {
     public class ErrorViewModel

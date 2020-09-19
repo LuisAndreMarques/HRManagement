@@ -13,6 +13,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Update="EpifaniaResources.en.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="EpifaniaResources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>EpifaniaResources.Designer.cs</LastGenOutput>

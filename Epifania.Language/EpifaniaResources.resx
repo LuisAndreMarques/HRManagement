@@ -117,6 +117,36 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Complexity" xml:space="preserve">
+    <value>Complexidade</value>
+  </data>
+  <data name="Date" xml:space="preserve">
+    <value>Data</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Descrição</value>
+  </data>
+  <data name="DueDate" xml:space="preserve">
+    <value>Data expectável</value>
+  </data>
+  <data name="EndDate" xml:space="preserve">
+    <value>Data fim</value>
+  </data>
+  <data name="IsMultipleDayEvent" xml:space="preserve">
+    <value>Evento múltiplo</value>
+  </data>
+  <data name="IsSingleEvent" xml:space="preserve">
+    <value>Evento único</value>
+  </data>
+  <data name="Priority" xml:space="preserve">
+    <value>Prioridade</value>
+  </data>
+  <data name="StartDate" xml:space="preserve">
+    <value>Data início</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>Título</value>
+  </data>
   <data name="UserName" xml:space="preserve">
     <value>Utilizador</value>
   </data>
