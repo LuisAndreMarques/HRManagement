@@ -7,6 +7,22 @@
   <ItemGroup>
     <Compile Remove="Migrations\20200919225332_DatabasePhase1.cs" />
     <Compile Remove="Migrations\20200919225332_DatabasePhase1.Designer.cs" />
+    <Compile Remove="Migrations\20200919230132_DatabasePhase1.cs" />
+    <Compile Remove="Migrations\20200919230132_DatabasePhase1.Designer.cs" />
+    <Compile Remove="Migrations\20200921220442_x.cs" />
+    <Compile Remove="Migrations\20200921220442_x.Designer.cs" />
+    <Compile Remove="Migrations\20200923222715_InitalMigrationPhase1.cs" />
+    <Compile Remove="Migrations\20200923222715_InitalMigrationPhase1.Designer.cs" />
+    <Compile Remove="Migrations\20200923223213_InitalMigrationPhase1.cs" />
+    <Compile Remove="Migrations\20200923223213_InitalMigrationPhase1.Designer.cs" />
+    <Compile Remove="Migrations\20200923223510_InitalMigrationPhase1.cs" />
+    <Compile Remove="Migrations\20200923223510_InitalMigrationPhase1.Designer.cs" />
+    <Compile Remove="Migrations\20200923223856_InitalMigrationPhase1.cs" />
+    <Compile Remove="Migrations\20200923223856_InitalMigrationPhase1.Designer.cs" />
+    <Compile Remove="Migrations\20200923224001_InitalMigrationPhase1.cs" />
+    <Compile Remove="Migrations\20200923224001_InitalMigrationPhase1.Designer.cs" />
+    <Compile Remove="Migrations\20200923224056_InitalMigrationPhase1.cs" />
+    <Compile Remove="Migrations\20200923224056_InitalMigrationPhase1.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -16,6 +32,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Epifania.Common\Epifania.Common.csproj" />
     <ProjectReference Include="..\Epifania.Language\Epifania.Language.csproj" />
   </ItemGroup>
 

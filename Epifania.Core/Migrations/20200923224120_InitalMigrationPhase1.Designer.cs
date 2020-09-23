@@ -10,14 +10,14 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Epifania.Core.Migrations
 {
     [DbContext(typeof(DataBaseContext))]
-    [Migration("20200919230132_DatabasePhase1")]
-    partial class DatabasePhase1
+    [Migration("20200923224120_InitalMigrationPhase1")]
+    partial class InitalMigrationPhase1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.1.7")
+                .HasAnnotation("ProductVersion", "3.1.8")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -35,6 +35,71 @@ namespace Epifania.Core.Migrations
                     b.HasKey("ClientId");
 
                     b.ToTable("Clients");
+                });
+
+            modelBuilder.Entity("Epifania.Core.Models.Company", b =>
+                {
+                    b.Property<int>("CompanyId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(50)")
+                        .HasMaxLength(50);
+
+                    b.HasKey("CompanyId");
+
+                    b.ToTable("Companies");
+                });
+
+            modelBuilder.Entity("Epifania.Core.Models.Configuration", b =>
+                {
+                    b.Property<int>("ConfigurationId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(250)")
+                        .HasMaxLength(250);
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(50)")
+                        .HasMaxLength(50);
+
+                    b.HasKey("ConfigurationId");
+
+                    b.ToTable("Configurations");
+                });
+
+            modelBuilder.Entity("Epifania.Core.Models.Evaluation", b =>
+                {
+                    b.Property<int>("EvaluationId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(250)")
+                        .HasMaxLength(250);
+
+                    b.Property<decimal>("PercentageAcquired")
+                        .HasColumnType("decimal(3,2)");
+
+                    b.Property<int?>("PersonalUserEvaluationId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("TeamUserEvaluationId")
+                        .HasColumnType("int");
+
+                    b.HasKey("EvaluationId");
+
+                    b.HasIndex("PersonalUserEvaluationId");
+
+                    b.HasIndex("TeamUserEvaluationId");
+
+                    b.ToTable("Evaluations");
                 });
 
             modelBuilder.Entity("Epifania.Core.Models.Event", b =>
@@ -75,6 +140,43 @@ namespace Epifania.Core.Migrations
                     b.ToTable("Events");
                 });
 
+            modelBuilder.Entity("Epifania.Core.Models.EventManagement", b =>
+                {
+                    b.Property<int>("EventManagementId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(250)")
+                        .HasMaxLength(250);
+
+                    b.Property<int>("EventId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("EventManagementStatus")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ObjectivesStatus")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserRequestedId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("UserRequiredId")
+                        .HasColumnType("int");
+
+                    b.HasKey("EventManagementId");
+
+                    b.HasIndex("EventId");
+
+                    b.HasIndex("UserRequestedId");
+
+                    b.HasIndex("UserRequiredId");
+
+                    b.ToTable("EventsManagement");
+                });
+
             modelBuilder.Entity("Epifania.Core.Models.EventType", b =>
                 {
                     b.Property<int>("EventTypeId")
@@ -95,6 +197,85 @@ namespace Epifania.Core.Migrations
                     b.HasKey("EventTypeId");
 
                     b.ToTable("EventTypes");
+                });
+
+            modelBuilder.Entity("Epifania.Core.Models.Feedback", b =>
+                {
+                    b.Property<int>("FeedbackId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(250)")
+                        .HasMaxLength(250);
+
+                    b.Property<DateTime>("DueDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("UserRequestedId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserRequiredId")
+                        .HasColumnType("int");
+
+                    b.HasKey("FeedbackId");
+
+                    b.HasIndex("UserRequestedId");
+
+                    b.HasIndex("UserRequiredId");
+
+                    b.ToTable("Feedbacks");
+                });
+
+            modelBuilder.Entity("Epifania.Core.Models.ObjectiveManagement", b =>
+                {
+                    b.Property<int>("ObjectiveManagementId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(250)")
+                        .HasMaxLength(250);
+
+                    b.Property<DateTime>("DueDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("ObjectivesStatus")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ObjectiveManagementId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("ObjectivesManagement");
+                });
+
+            modelBuilder.Entity("Epifania.Core.Models.PersonalUserEvaluation", b =>
+                {
+                    b.Property<int>("PersonalUserEvaluationId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("FeedbackId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("PersonalUserEvaluationId");
+
+                    b.HasIndex("FeedbackId");
+
+                    b.ToTable("PersonalUsersEvaluation");
                 });
 
             modelBuilder.Entity("Epifania.Core.Models.Project", b =>
@@ -199,6 +380,28 @@ namespace Epifania.Core.Migrations
                     b.ToTable("Teams");
                 });
 
+            modelBuilder.Entity("Epifania.Core.Models.TeamUserEvaluation", b =>
+                {
+                    b.Property<int>("TeamUserEvaluationId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("TeamId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("TeamUserEvaluationId");
+
+                    b.HasIndex("TeamId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("TeamUserEvaluations");
+                });
+
             modelBuilder.Entity("Epifania.Core.Models.UserPermission", b =>
                 {
                     b.Property<int>("UserPermissionId")
@@ -299,11 +502,72 @@ namespace Epifania.Core.Migrations
                     b.ToTable("Users");
                 });
 
+            modelBuilder.Entity("Epifania.Core.Models.Evaluation", b =>
+                {
+                    b.HasOne("Epifania.Core.Models.PersonalUserEvaluation", null)
+                        .WithMany("Evaluations")
+                        .HasForeignKey("PersonalUserEvaluationId");
+
+                    b.HasOne("Epifania.Core.Models.TeamUserEvaluation", null)
+                        .WithMany("Evaluations")
+                        .HasForeignKey("TeamUserEvaluationId");
+                });
+
             modelBuilder.Entity("Epifania.Core.Models.Event", b =>
                 {
                     b.HasOne("Epifania.Core.Models.EventType", "EventType")
                         .WithMany()
                         .HasForeignKey("EventTypeId");
+                });
+
+            modelBuilder.Entity("Epifania.Core.Models.EventManagement", b =>
+                {
+                    b.HasOne("Epifania.Core.Models.Event", "Event")
+                        .WithMany()
+                        .HasForeignKey("EventId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Epifania.Models.User", "UserRequested")
+                        .WithMany()
+                        .HasForeignKey("UserRequestedId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Epifania.Models.User", "UserRequired")
+                        .WithMany()
+                        .HasForeignKey("UserRequiredId");
+                });
+
+            modelBuilder.Entity("Epifania.Core.Models.Feedback", b =>
+                {
+                    b.HasOne("Epifania.Models.User", "UserRequested")
+                        .WithMany()
+                        .HasForeignKey("UserRequestedId");
+
+                    b.HasOne("Epifania.Models.User", "UserRequired")
+                        .WithMany()
+                        .HasForeignKey("UserRequiredId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Epifania.Core.Models.ObjectiveManagement", b =>
+                {
+                    b.HasOne("Epifania.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Epifania.Core.Models.PersonalUserEvaluation", b =>
+                {
+                    b.HasOne("Epifania.Core.Models.Feedback", "Feedback")
+                        .WithMany()
+                        .HasForeignKey("FeedbackId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Epifania.Core.Models.Project", b =>
@@ -335,6 +599,21 @@ namespace Epifania.Core.Migrations
                     b.HasOne("Epifania.Core.Models.Project", "Project")
                         .WithMany("Tasks")
                         .HasForeignKey("ProjectId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Epifania.Core.Models.TeamUserEvaluation", b =>
+                {
+                    b.HasOne("Epifania.Core.Models.Team", "Team")
+                        .WithMany()
+                        .HasForeignKey("TeamId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Epifania.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

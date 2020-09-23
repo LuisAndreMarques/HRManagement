@@ -27,7 +27,7 @@ namespace Epifania.Core.Models
 
         public int ClientId { get; set; }
         public virtual Client Client { get; set; }
-              
+
         public ICollection<Task> Tasks { get; set; }
 
         #endregion Relations

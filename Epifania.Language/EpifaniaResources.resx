@@ -138,6 +138,9 @@
   <data name="IsSingleEvent" xml:space="preserve">
     <value>Evento único</value>
   </data>
+  <data name="Percentage" xml:space="preserve">
+    <value>Percentagem</value>
+  </data>
   <data name="Priority" xml:space="preserve">
     <value>Prioridade</value>
   </data>

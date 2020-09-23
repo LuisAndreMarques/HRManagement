@@ -124,6 +124,15 @@ namespace Epifania.Language {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Percentagem.
+        /// </summary>
+        public static string Percentage {
+            get {
+                return ResourceManager.GetString("Percentage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Prioridade.
         /// </summary>
         public static string Priority {
